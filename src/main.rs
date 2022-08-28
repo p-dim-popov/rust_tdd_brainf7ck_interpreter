@@ -1,7 +1,7 @@
 use std::{env, process};
 
-use util::Config;
-mod util;
+use config::Config;
+mod config;
 
 fn main() {
     let args = env::args();
