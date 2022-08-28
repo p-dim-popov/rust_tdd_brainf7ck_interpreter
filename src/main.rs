@@ -1,6 +1,7 @@
-use std::{env, process};
+use std::{env, process, fs};
 
 use config::Config;
+use source::SourceAdapter;
 mod config;
 mod source;
 
@@ -11,5 +12,7 @@ fn main() {
         process::exit(1);
     });
 
-    println!("Got that: {:?}", config)
+    let source = SourceAdapter::new(fs::read_to_string).from_config(config);
+
+    println!("Got that: {:?}", source.unwrap())
 }
