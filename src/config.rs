@@ -36,7 +36,7 @@ impl Config {
                         Some(st) => st,
                         _ => return Err("Unknown source type"),
                     },
-                    _ => return Err("Unknown option")
+                    _ => return Err("Unknown option"),
                 },
                 None => return Err("Invalid option"),
             },
