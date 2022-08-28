@@ -2,6 +2,7 @@ use std::{env, process};
 
 use config::Config;
 mod config;
+mod source;
 
 fn main() {
     let args = env::args();
