@@ -29,11 +29,18 @@ mod config_tests {
     use super::*;
 
     #[test]
-    fn it_should_parse_minimal_variant_to_file() {
-        let input = "bf hello-world.bf".split_ascii_whitespace().map(String::from);
+    fn it_should_parse_minimal_variant_as_file() {
+        expect_input_to_be_parsed_correctly(
+            "bf hello-world.bf", 
+            Config { source: "hello-world.bf".to_string(), source_type: SourceType::File }
+        )
+    }
+
+    fn expect_input_to_be_parsed_correctly(input: &'static str, expected: Config) {
+        let input = input.split_ascii_whitespace().map(String::from);
 
         let result = Config::parse(input).unwrap();
 
-        assert_eq!(result, Config { source: "hello-world.bf".to_string(), source_type: SourceType::File })
+        assert_eq!(result, expected)        
     }
 }
