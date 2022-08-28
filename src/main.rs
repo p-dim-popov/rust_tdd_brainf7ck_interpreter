@@ -1,7 +1,7 @@
 use std::{env, process, fs};
 
 use config::Config;
-use source::SourceAdapter;
+use source::Source;
 mod config;
 mod source;
 
@@ -12,7 +12,7 @@ fn main() {
         process::exit(1);
     });
 
-    let source = SourceAdapter::new(fs::read_to_string).from_config(config);
+    let source = Source::from_config(config, fs::read_to_string);
 
     println!("Got that: {:?}", source.unwrap())
 }
