@@ -1,4 +1,4 @@
-use std::{env, process, fs};
+use std::{env, fs, process};
 
 use config::Config;
 use source::Source;
@@ -12,7 +12,10 @@ fn main() {
         process::exit(1);
     });
 
-    let source = Source::from_config(config, fs::read_to_string);
+    let source = Source::from_config(config, fs::read_to_string).unwrap_or_else(|e| {
+        eprintln!("Couldn't parse source: {e}");
+        process::exit(1);
+    });
 
-    println!("Got that: {:?}", source.unwrap())
+    println!("Got that: {:?}", source);
 }
